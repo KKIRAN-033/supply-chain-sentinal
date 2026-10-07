@@ -32,13 +32,7 @@ jobs:
           PYTHONPATH: backend:.
         run: |
           cd backend
-          python -m pytest tests/ -v --tb=short || (
-            echo "=== PYTEST FAILED ==="
-            python -m pytest tests/ --tb=short -ra 2>&1 | grep -E "FAILED |AssertionError|OperationalError|IntegrityError|AttributeError|KeyError" | head -n 30 | while IFS= read -r l; do
-              echo "::error::$l"
-            done
-            exit 1
-          )
+          python -m pytest tests/ -v
 
   frontend-build:
     name: Frontend Build & Type Check (Vercel Ready)

@@ -59,9 +59,14 @@ async def validate_api_key(api_key: str = Security(api_key_header)) -> str:
 
 
 def sanitize_filename(filename: str) -> str:
-    """Sanitize a filename to prevent path traversal."""
-    import os
-    basename = os.path.basename(filename)
-    # Remove any remaining suspicious characters
-    safe = "".join(c for c in basename if c.isalnum() or c in ".-_")
+    """Sanitize a filename to prevent path traversal across Windows and Linux."""
+    # Normalize backslashes to forward slashes regardless of OS
+    clean = filename.replace("\\", "/")
+    # Extract only the base component
+    clean = clean.split("/")[-1]
+    # Remove any non-whitelisted characters
+    safe = "".join(c for c in clean if c.isalnum() or c in ".-_")
+    # Strip any consecutive dot traversal remnants
+    while ".." in safe:
+        safe = safe.replace("..", "")
     return safe or "unnamed"
