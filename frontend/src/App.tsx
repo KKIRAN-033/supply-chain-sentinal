@@ -103,11 +103,8 @@ function AppLayout() {
     setCurrentUser(null);
   };
 
-  if (!currentUser) {
-    return <LoginPage onLoginSuccess={(u) => setCurrentUser(u)} />;
-  }
-
   useEffect(() => {
+    if (!currentUser) return;
     api.listProjects()
       .then(prjs => {
         setProjects(prjs);
@@ -119,10 +116,11 @@ function AppLayout() {
         }
       })
       .catch(console.error);
-  }, [location.pathname]);
+  }, [currentUser, location.pathname]);
 
   // Listen to project switch events from child pages
   useEffect(() => {
+    if (!currentUser) return;
     const handleProj = (e: any) => {
       if (e.detail && e.detail !== activeProjectId) {
         setActiveProjectId(e.detail);
@@ -130,10 +128,11 @@ function AppLayout() {
     };
     window.addEventListener('sentinel:project-change', handleProj);
     return () => window.removeEventListener('sentinel:project-change', handleProj);
-  }, [activeProjectId]);
+  }, [currentUser, activeProjectId]);
 
   // Global event listener for opening AI Security Analyst from any component
   useEffect(() => {
+    if (!currentUser) return;
     const handleOpenAI = (e: any) => {
       const detail = e.detail || {};
       setAiContext({
@@ -150,7 +149,11 @@ function AppLayout() {
 
     window.addEventListener('open-ai-analyst', handleOpenAI);
     return () => window.removeEventListener('open-ai-analyst', handleOpenAI);
-  }, [activeProjectId]);
+  }, [currentUser, activeProjectId]);
+
+  if (!currentUser) {
+    return <LoginPage onLoginSuccess={(u) => setCurrentUser(u)} />;
+  }
 
   const handleProjectSelect = (id: string) => {
     setActiveProjectId(id);
