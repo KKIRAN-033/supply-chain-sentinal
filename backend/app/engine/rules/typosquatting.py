@@ -63,7 +63,7 @@ def _load_protected_packages() -> dict[str, list[str]]:
             "angular", "babel", "eslint", "prettier", "mocha",
             "jest", "chalk", "commander", "inquirer", "debug",
             "underscore", "async", "request", "bluebird", "uuid",
-            "vite", "tailwindcss", "postcss", "recharts", "cytoscape", "jsesc",
+            "vite", "tailwindcss", "postcss", "recharts", "cytoscape", "jsesc", "cssesc", "jiti",
         ],
         "pypi": [
             "requests", "flask", "django", "numpy", "pandas",
