@@ -142,6 +142,18 @@ app.include_router(api_router)
 
 # ==================== Health & Readiness Probes ====================
 
+@app.get("/")
+def root():
+    """Root welcome endpoint providing system metadata and docs links."""
+    return {
+        "app": settings.APP_NAME,
+        "version": settings.APP_VERSION,
+        "status": "online",
+        "docs_url": "/docs",
+        "health_url": "/health",
+    }
+
+
 @app.get("/health")
 def health():
     """General system health and version metadata."""
