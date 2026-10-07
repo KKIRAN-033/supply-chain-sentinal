@@ -5,7 +5,9 @@
     "mocha", "jest", "chalk", "commander", "inquirer", "debug",
     "underscore", "async", "request", "bluebird", "uuid", "cors",
     "body-parser", "mongoose", "sequelize", "socket.io", "passport",
-    "jsonwebtoken", "bcrypt", "dotenv", "nodemon", "pm2", "helmet"
+    "jsonwebtoken", "bcrypt", "dotenv", "nodemon", "pm2", "helmet",
+    "vite", "tailwindcss", "postcss", "recharts", "cytoscape", "autoprefixer",
+    "react-dom", "react-router-dom", "jsesc"
   ],
   "pypi": [
     "requests", "flask", "django", "numpy", "pandas", "scipy",
