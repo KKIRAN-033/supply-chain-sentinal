@@ -18,21 +18,27 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          cache-dependency-path: backend/requirements.txt
 
       - name: Install Dependencies
         run: |
           cd backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-asyncio httpx
 
       - name: Run Test Suite
         env:
           SCS_ENVIRONMENT: test
-          PYTHONPATH: .
+          PYTHONPATH: backend:.
         run: |
           cd backend
-          python -m pytest tests/ -v
+          python -m pytest tests/ -v --tb=short || (
+            echo "::error title=Pytest Error::Pytest execution failed"
+            python -m pytest tests/ -v --tb=short 2>&1 | head -n 40 | while IFS= read -r line; do
+              echo "::error::$line"
+            done
+            exit 1
+          )
 
   frontend-build:
     name: Frontend Build & Type Check (Vercel Ready)
