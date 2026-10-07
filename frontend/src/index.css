@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-sentinel-bg text-gray-100 font-sans;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-sentinel-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sentinel-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sentinel-accent;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-sentinel-card border border-sentinel-border rounded-xl p-5 transition-all duration-300;
+  }
+  .card:hover {
+    @apply border-sentinel-accent/40;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.08);
+  }
+  .btn-primary {
+    @apply px-5 py-2.5 bg-sentinel-accent text-white rounded-lg font-medium
+           hover:bg-blue-600 active:bg-blue-700 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply px-5 py-2.5 bg-sentinel-card border border-sentinel-border text-gray-300 rounded-lg font-medium
+           hover:border-sentinel-accent/50 hover:text-white transition-all duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wide;
+  }
+  .badge-critical { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
+  .badge-high { @apply bg-orange-500/20 text-orange-400 border border-orange-500/30; }
+  .badge-medium { @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .badge-low { @apply bg-green-500/20 text-green-400 border border-green-500/30; }
+  .badge-unknown { @apply bg-gray-500/20 text-gray-400 border border-gray-500/30; }
+  .badge-allow { @apply bg-green-500/20 text-green-400 border border-green-500/30; }
+  .badge-review { @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .badge-block { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
+
+  .input-field {
+    @apply w-full bg-sentinel-bg border border-sentinel-border rounded-lg px-4 py-2.5 text-gray-200
+           placeholder-gray-500 focus:border-sentinel-accent focus:ring-1 focus:ring-sentinel-accent
+           outline-none transition-all duration-200;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-400
+           hover:bg-sentinel-card hover:text-white transition-all duration-200 text-sm;
+  }
+  .sidebar-link.active {
+    @apply bg-sentinel-accent/10 text-sentinel-accent-glow border-l-2 border-sentinel-accent;
+  }
+}

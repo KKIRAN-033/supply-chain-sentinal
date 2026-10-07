@@ -1,0 +1,32 @@
+{
+  "vulnerabilities": [
+    {
+      "ecosystem": "npm",
+      "package": "express",
+      "cve_id": "CVE-2024-29041",
+      "title": "Express.js Open Redirect via malformed URLs",
+      "description": "Express before 4.19.2 is affected by an open redirect vulnerability when passing untrusted user input directly to res.location().",
+      "severity": "MEDIUM",
+      "cvss_score": 6.1,
+      "affected_versions": ["<4.19.2"],
+      "fixed_versions": ["4.19.2"],
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2024-29041"],
+      "is_kev": false,
+      "exploitability": "POC_PUBLIC"
+    },
+    {
+      "ecosystem": "npm",
+      "package": "lodash",
+      "cve_id": "CVE-2020-8203",
+      "title": "Prototype Pollution in lodash",
+      "description": "Prototype pollution in lodash versions prior to 4.17.21 via zipObjectDeep allowing attackers to inject properties into Object.prototype.",
+      "severity": "HIGH",
+      "cvss_score": 7.4,
+      "affected_versions": ["<4.17.21"],
+      "fixed_versions": ["4.17.21"],
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2020-8203"],
+      "is_kev": false,
+      "exploitability": "FUNCTIONAL"
+    }
+  ]
+}

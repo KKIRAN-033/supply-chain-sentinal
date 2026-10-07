@@ -1,0 +1,17 @@
+{
+  "npm/flatmap-stream": {
+    "status": "malicious",
+    "reason": "Cryptostealer injection targeting Copay wallet",
+    "first_seen": "2018-11-26"
+  },
+  "npm/fallguys": {
+    "status": "malicious",
+    "reason": "Discord token grabber payload",
+    "first_seen": "2020-08-19"
+  },
+  "pypi/colourama": {
+    "status": "malicious",
+    "reason": "Typosquat with credential harvesting backdoor",
+    "first_seen": "2018-10-22"
+  }
+}

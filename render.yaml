@@ -1,0 +1,40 @@
+# ==============================================================================
+# Supply-Chain Sentinel — Render Deployment Blueprint
+# Deploy backend FastAPI service with persistent storage on Render.com
+# ==============================================================================
+services:
+  - type: web
+    name: sentinel-backend
+    runtime: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: cd backend && pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT --workers 2
+    healthCheckPath: /health/live
+    autoDeploy: true
+    envVars:
+      - key: SCS_ENVIRONMENT
+        value: production
+      - key: SCS_DEBUG
+        value: false
+      - key: SCS_LOG_LEVEL
+        value: INFO
+      - key: SCS_DATABASE_URL
+        value: sqlite:///./data/sentinel.db
+      - key: SCS_ENABLE_RATE_LIMITING
+        value: true
+      - key: SCS_RATE_LIMIT_PER_MINUTE
+        value: 1200
+      - key: SCS_SCAN_RATE_LIMIT_PER_MINUTE
+        value: 300
+      - key: SCS_ENABLE_OSV
+        value: true
+      - key: SCS_OSV_TIMEOUT_SECONDS
+        value: 2.0
+    # Note: Render Free tier does not support persistent disks.
+    # To attach a persistent disk, upgrade service plan to 'starter' and uncomment below:
+    # disk:
+    #   name: sentinel-data
+    #   mountPath: /var/data
+    #   sizeGB: 1

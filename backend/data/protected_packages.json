@@ -1,0 +1,17 @@
+{
+  "npm": [
+    "express", "react", "lodash", "axios", "webpack", "moment", "jquery",
+    "typescript", "next", "vue", "angular", "babel", "eslint", "prettier",
+    "mocha", "jest", "chalk", "commander", "inquirer", "debug",
+    "underscore", "async", "request", "bluebird", "uuid", "cors",
+    "body-parser", "mongoose", "sequelize", "socket.io", "passport",
+    "jsonwebtoken", "bcrypt", "dotenv", "nodemon", "pm2", "helmet"
+  ],
+  "pypi": [
+    "requests", "flask", "django", "numpy", "pandas", "scipy",
+    "tensorflow", "torch", "boto3", "pillow", "cryptography",
+    "sqlalchemy", "celery", "redis", "pytest", "setuptools", "pip",
+    "wheel", "six", "urllib3", "pyyaml", "jinja2", "click", "httpx",
+    "fastapi", "uvicorn", "gunicorn", "pydantic", "black", "mypy"
+  ]
+}
