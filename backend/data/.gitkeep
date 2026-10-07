@@ -1,0 +1,1 @@
+# Ensure backend/data directory is tracked by git for runtime SQLite & JSON fallbacks

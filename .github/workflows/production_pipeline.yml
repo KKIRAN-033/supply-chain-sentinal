@@ -29,6 +29,7 @@ jobs:
       - name: Run Test Suite
         env:
           SCS_ENVIRONMENT: test
+          PYTHONPATH: .
         run: |
           cd backend
           python -m pytest tests/ -v

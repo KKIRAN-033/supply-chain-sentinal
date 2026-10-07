@@ -47,6 +47,7 @@ def get_db() -> Session:
 
 def init_db():
     """Create all tables and perform lightweight migrations. Safe to call multiple times."""
+    from app.db import models  # noqa: F401 - ensure models are registered on Base.metadata
     Base.metadata.create_all(bind=engine)
     if "sqlite" in settings.DATABASE_URL:
         try:
@@ -64,4 +65,11 @@ def init_db():
                 cursor.close()
         except Exception:
             pass
+
+
+# Auto-initialize database schema on module load
+try:
+    init_db()
+except Exception:
+    pass
 

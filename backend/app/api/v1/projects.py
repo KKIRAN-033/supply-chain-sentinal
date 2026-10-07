@@ -280,9 +280,7 @@ def get_or_create_project_by_repo(req: ProjectCreateRequest, db: Session = Depen
 
     org = repo.get_organization(db, "org_default")
     if not org:
-        org = repo.create_organization(db, "Default Organization")
-        org.id = "org_default"
-        db.commit()
+        org = repo.create_organization(db, "Default Organization", org_id="org_default")
 
     name = req.name
     if not name or name == "New Project":

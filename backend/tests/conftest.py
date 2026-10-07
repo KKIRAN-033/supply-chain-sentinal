@@ -22,6 +22,8 @@ def isolated_test_database():
     orig_engine = base.engine
     orig_session_local = base.SessionLocal
 
+    os.makedirs(os.path.dirname(TEST_DB_PATH), exist_ok=True)
+
     # 1. Point to isolated test database
     settings.DATABASE_URL = TEST_DB_URL
     test_engine = create_engine(
@@ -30,6 +32,9 @@ def isolated_test_database():
     )
     base.engine = test_engine
     base.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
+
+    from app.db import models  # noqa: F401
+    models.Base.metadata.create_all(bind=test_engine)
     base.init_db()
 
     yield
