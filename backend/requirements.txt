@@ -8,5 +8,5 @@ python-multipart==0.0.31
 httpx==0.25.2
 networkx==3.2.1
 python-Levenshtein==0.23.0
-pytest==8.3.0
-pytest-asyncio==0.24.0
+pytest==9.0.3
+pytest-asyncio==1.4.0
