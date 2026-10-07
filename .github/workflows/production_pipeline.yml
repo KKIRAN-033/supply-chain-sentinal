@@ -33,9 +33,9 @@ jobs:
         run: |
           cd backend
           python -m pytest tests/ -v --tb=short || (
-            echo "::error title=Pytest Summary::Capturing failure traceback below"
-            python -m pytest tests/ --tb=short -rf 2>&1 | tail -n 50 | while IFS= read -r line; do
-              echo "::error::$line"
+            echo "=== PYTEST FAILED ==="
+            python -m pytest tests/ --tb=short -ra 2>&1 | grep -E "FAILED |AssertionError|OperationalError|IntegrityError|AttributeError|KeyError" | head -n 30 | while IFS= read -r l; do
+              echo "::error::$l"
             done
             exit 1
           )
